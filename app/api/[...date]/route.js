@@ -1,36 +1,46 @@
 export async function GET(request, { params }) {
-  const { date = [] } = params;
-  const dateParam = date[0];
-
-  let dateObj;
-
-  if (!dateParam) {
-    // If no date provided, return current time
-    dateObj = new Date();
-  } else {
-    // Check if it's a Unix timestamp (numeric string)
-    const timestamp = parseInt(dateParam);
-    if (!isNaN(timestamp)) {
-      dateObj = new Date(timestamp);
-    } else {
-      // Try parsing as a date string
-      dateObj = new Date(dateParam);
-    }
+  const { date } = params;
+  
+  let dateString = Array.isArray(date) ? date[0] : date;
+  
+  // Handle empty date parameter
+  if (!dateString || dateString.trim() === '') {
+    const now = new Date();
+    const response = {
+      unix: now.getTime(),
+      utc: now.toUTCString()
+    };
+    
+    return new Response(JSON.stringify(response), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
-
+  
+  // Check if it's a Unix timestamp (numbers only)
+  let dateObj;
+  if (/^\d+$/.test(dateString)) {
+    dateObj = new Date(parseInt(dateString));
+  } else {
+    dateObj = new Date(dateString);
+  }
+  
   // Check if date is valid
   if (isNaN(dateObj.getTime())) {
-    return Response.json(
-      { error: "Invalid Date" },
-      { status: 400 }
-    );
+    return new Response(JSON.stringify({ error: "Invalid Date" }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
-
-  // Format the response
+  
+  // Return valid date response
   const response = {
     unix: dateObj.getTime(),
-    utc: dateObj.toUTCString(),
+    utc: dateObj.toUTCString()
   };
-
-  return Response.json(response);
+  
+  return new Response(JSON.stringify(response), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json' }
+  });
 }

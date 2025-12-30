@@ -1,38 +1,111 @@
 export default function Home() {
   return (
-    <main style={{ maxWidth: '800px', margin: '0 auto' }}>
-      <h1 style={{ fontSize: '48px', marginBottom: '20px' }}>GP Timestamp Microservice</h1>
+    <main style={{ 
+      padding: '50px', 
+      maxWidth: '800px', 
+      margin: '0 auto',
+      fontFamily: 'system-ui, sans-serif' 
+    }}>
+      <h1 style={{ color: '#1a1a2e', marginBottom: '20px' }}>
+        GP - Timestamp Microservice
+      </h1>
       
-      <div style={{ marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>Example Usage:</h2>
-        <div style={{ lineHeight: '1.8' }}>
-          <div>
-            <a href="/api/2025-12-30" style={{ color: '#00ccc5ff' }}>
-              [Timestamp url]/api/2025-12-30
+      <div style={{ 
+        backgroundColor: '#f8f9fa', 
+        padding: '25px', 
+        borderRadius: '8px',
+        border: '1px solid #dee2e6',
+        marginBottom: '30px'
+      }}>
+        <h2 style={{ color: '#0a0a23', marginBottom: '15px' }}>
+          Example Usage:
+        </h2>
+        
+        <div style={{ marginBottom: '20px' }}>
+          <code style={{ 
+            display: 'block', 
+            backgroundColor: '#2d3748', 
+            color: 'white', 
+            padding: '15px',
+            borderRadius: '5px',
+            marginBottom: '10px',
+            overflowX: 'auto'
+          }}>
+            <a href="/api/2015-12-25" style={{ color: '#63b3ed', textDecoration: 'none' }}>
+              /api/2015-12-25
             </a>
-          </div>
-          <div>
-            <a href="/api/767043200000" style={{ color: '#00cc41ff' }}>
-              [Timestamp url]/api/767043200000
+          </code>
+          
+          <code style={{ 
+            display: 'block', 
+            backgroundColor: '#2d3748', 
+            color: 'white', 
+            padding: '15px',
+            borderRadius: '5px',
+            marginBottom: '10px',
+            overflowX: 'auto'
+          }}>
+            <a href="/api/1451001600000" style={{ color: '#63b3ed', textDecoration: 'none' }}>
+              /api/1451001600000
             </a>
-          </div>
+          </code>
+          
+          <code style={{ 
+            display: 'block', 
+            backgroundColor: '#2d3748', 
+            color: 'white', 
+            padding: '15px',
+            borderRadius: '5px',
+            overflowX: 'auto'
+          }}>
+            <a href="/api" style={{ color: '#63b3ed', textDecoration: 'none' }}>
+              /api
+            </a>
+          </code>
         </div>
-      </div>
-      
-      <div>
-        <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>Example Output:</h2>
+        
+        <h2 style={{ color: '#0a0a23', marginTop: '25px', marginBottom: '15px' }}>
+          Example Output:
+        </h2>
+        
         <pre style={{ 
-          background: '#f4f4f4', 
-          padding: '15px', 
+          backgroundColor: '#2d3748', 
+          color: 'white', 
+          padding: '15px',
           borderRadius: '5px',
           overflowX: 'auto',
-          color: '#333'  /* ← Changed font color to dark gray for better readability */
+          fontSize: '14px',
+          marginBottom: '15px'
         }}>
 {`{
-  "unix": 1767043200000,
-  "utc": "Tue, 30 Dec 2025 00:00:00 GMT"
-}`}</pre>
+  "unix": 1451001600000,
+  "utc": "Fri, 25 Dec 2015 00:00:00 GMT"
+}`}
+        </pre>
+        
+        <pre style={{ 
+          backgroundColor: '#2d3748', 
+          color: 'white', 
+          padding: '15px',
+          borderRadius: '5px',
+          overflowX: 'auto',
+          fontSize: '14px'
+        }}>
+{`{
+  "error": "Invalid Date"
+}`}
+        </pre>
       </div>
+      
+      <footer style={{ 
+        marginTop: '50px', 
+        textAlign: 'center', 
+        color: '#6c757d',
+        fontSize: '14px'
+      }}>
+        <p>By: Guilbert Paz</p>
+        <p>FreeCodeCamp API Project</p>
+      </footer>
     </main>
-  );
+  )
 }
